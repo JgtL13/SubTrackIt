@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class ContentViewModel: ObservableObject {
+    init() {
+        
+    }
+}

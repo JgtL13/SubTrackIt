@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct SubscriptionsView: View {
+    @StateObject var viewModel = SubscriptionsViewModel()
+    
+    init() {
+        
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -15,13 +21,14 @@ struct SubscriptionsView: View {
             }
             // .navigationTitle("Today")
             .toolbar {
-                Button {
-                    // Action
-                } label: {
+                NavigationLink(destination: ServicesView()) {
                     Image(systemName: "plus")
                 }
                 .padding()
                 .font(.system(size: 26))
+            }
+            .sheet(isPresented: $viewModel.showingNewItemView) {
+                NewItemView()
             }
         }
     }

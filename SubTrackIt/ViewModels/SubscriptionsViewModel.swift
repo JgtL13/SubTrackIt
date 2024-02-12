@@ -6,3 +6,9 @@
 //
 
 import Foundation
+class SubscriptionsViewModel: ObservableObject {
+    @Published var showingNewItemView = false
+    init() {
+        
+    }
+}
