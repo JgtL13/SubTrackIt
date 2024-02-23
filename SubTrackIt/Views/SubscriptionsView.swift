@@ -11,13 +11,24 @@ struct SubscriptionsView: View {
     @StateObject var viewModel = SubscriptionsViewModel()
     
     init() {
+        print(viewModel.items)
         
     }
     
     var body: some View {
         NavigationView {
-            VStack {
-                
+            List {
+                //ForEach(viewModel.items, id: \.self) { item in
+                ForEach(viewModel.items, id: \.self) { item in
+                    NavigationLink(
+                        destination: ItemView(),
+                        label: {
+                            VStack(alignment: .leading) {
+                                Text(item.Provider)
+                                //Text(item.post).font(.caption).foregroundColor(.gray)
+                            }
+                        })
+                }
             }
             // .navigationTitle("Today")
             .toolbar {
