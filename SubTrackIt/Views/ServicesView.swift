@@ -13,16 +13,22 @@ struct ServicesView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.serviceList, id: \.self) { service in
-                NavigationLink(destination: Text(service)) {
-                    Image(systemName: "play.rectangle.fill")
-                    Text(service)
-                }
-                .padding()
+            ForEach(viewModel.items, id: \.self) { item in
+                NavigationLink(
+                    destination: ItemView(),
+                    label: {
+                        VStack(alignment: .leading) {
+                            Text(item.Provider)
+                            //Text(item.post).font(.caption).foregroundColor(.gray)
+                        }
+                    })
             }
             //.navigationBarTitle("Subscription Services", displayMode: .large)
             //.navigationBarTitle("Subscription Services")
         }
+        
+        //ForEach(viewModel.items, id: \.self) { item in
+                    
     }
 }
 

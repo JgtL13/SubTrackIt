@@ -18,7 +18,7 @@
 		5F30F3382B78A47F00FFB076 /* SubTrackItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F30F3372B78A47F00FFB076 /* SubTrackItUITests.swift */; };
 		5F30F33A2B78A47F00FFB076 /* SubTrackItUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F30F3392B78A47F00FFB076 /* SubTrackItUITestsLaunchTests.swift */; };
 		5FE53DDE2B79BA2D00B9D16E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE53DDD2B79BA2D00B9D16E /* User.swift */; };
-		5FE53DE02B79BA4500B9D16E /* SubscriptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE53DDF2B79BA4500B9D16E /* SubscriptionItem.swift */; };
+		5FE53DE02B79BA4500B9D16E /* ServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE53DDF2B79BA4500B9D16E /* ServiceItem.swift */; };
 		5FE53DE22B79BA6600B9D16E /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE53DE12B79BA6600B9D16E /* ContentViewModel.swift */; };
 		5FE53DE42B79BA7D00B9D16E /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE53DE32B79BA7D00B9D16E /* DashboardViewModel.swift */; };
 		5FE53DE62B79BA9200B9D16E /* SubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE53DE52B79BA9200B9D16E /* SubscriptionsViewModel.swift */; };
@@ -64,7 +64,7 @@
 		5F30F3372B78A47F00FFB076 /* SubTrackItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTrackItUITests.swift; sourceTree = "<group>"; };
 		5F30F3392B78A47F00FFB076 /* SubTrackItUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTrackItUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5FE53DDD2B79BA2D00B9D16E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		5FE53DDF2B79BA4500B9D16E /* SubscriptionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionItem.swift; sourceTree = "<group>"; };
+		5FE53DDF2B79BA4500B9D16E /* ServiceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItem.swift; sourceTree = "<group>"; };
 		5FE53DE12B79BA6600B9D16E /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		5FE53DE32B79BA7D00B9D16E /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		5FE53DE52B79BA9200B9D16E /* SubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewModel.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				5FE53DDD2B79BA2D00B9D16E /* User.swift */,
-				5FE53DDF2B79BA4500B9D16E /* SubscriptionItem.swift */,
+				5FE53DDF2B79BA4500B9D16E /* ServiceItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -359,7 +359,7 @@
 				5FE53DEC2B79BAE400B9D16E /* ItemView.swift in Sources */,
 				5FE9E0C72B79CA550079F789 /* ServicesView.swift in Sources */,
 				5F2BD9232B796C7B00ED3276 /* ProfileView.swift in Sources */,
-				5FE53DE02B79BA4500B9D16E /* SubscriptionItem.swift in Sources */,
+				5FE53DE02B79BA4500B9D16E /* ServiceItem.swift in Sources */,
 				5F30F31D2B78A47C00FFB076 /* SubTrackItApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SubTrackIt/Preview Content\"";
+				DEVELOPMENT_TEAM = 85UJ2BF2Y8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SubTrackIt/Info.plist;
@@ -553,6 +554,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SubTrackIt/Preview Content\"";
+				DEVELOPMENT_TEAM = 85UJ2BF2Y8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SubTrackIt/Info.plist;

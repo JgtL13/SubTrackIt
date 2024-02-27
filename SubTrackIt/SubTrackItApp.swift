@@ -13,7 +13,7 @@ struct SubTrackItApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(SubscriptionsViewModel())
+            ContentView().environmentObject(ServicesViewModel())
         }
     }
 }
