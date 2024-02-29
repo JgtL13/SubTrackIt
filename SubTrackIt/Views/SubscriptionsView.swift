@@ -22,7 +22,7 @@ struct SubscriptionsView: View {
                             RoundedRectangle(cornerRadius: 30, style: .continuous)
                                 .foregroundColor(Color(UIColor.systemBackground))
                                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                .frame(height: 100)
+                                .frame(height: 160)
                                 .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 5)
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
@@ -30,28 +30,42 @@ struct SubscriptionsView: View {
                                     HStack {
                                         VStack(alignment: .leading) {
                                             Text(item.Provider)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
                                                 .font(.title)
                                                 .bold()
+                                            Text(item.Plan_name)
+                                                .font(.headline)
+                                                .bold()
+                                            Text("\(item.Subscription_type)\(item.Free_trial == 1 ? " (Free Trial)" : "")")
+                                                .foregroundColor(.gray)
+                                            Text("Effective: \(item.Start_date)")
+                                                .foregroundColor(.gray)
                                             Text("Expires: \(item.End_date)")
-                                                .frame(maxWidth: .infinity, alignment: .leading)
                                                 .foregroundColor(.gray)
                                         }
-                                        .padding(.horizontal, 50)
+                                        .padding(.leading, 45)
                                         Spacer()
-                                        Text(String(item.Remaining))
-                                            .font(.title)
-                                            .bold()
-                                            .foregroundColor(item.Remaining <= 7 ? .red : .black)
-                                            .padding(.trailing, 50)
+                                        VStack (alignment: .center) {
+                                            Text(String(item.Remaining))
+                                                .font(.title)
+                                                .bold()
+                                                .foregroundColor(item.Remaining <= 7 ? .red : .black)
+
+                                            Text("days")
+                                                .font(.caption) // Adjust the font size and style as needed
+                                                .foregroundColor(.gray)
+                                        }
+                                        .frame(maxWidth: 120, alignment: .center)
+                                        .padding(.trailing, 10)
+                                        
                                     }
                                 }
                         }
                     }
                 }
             }
+            .navigationTitle("Your Subscriptions") // Add a title to the NavigationView
             .toolbar {
-                NavigationLink(destination: ServicesView()) {
+                NavigationLink(destination: NewItemView()) {
                     Image(systemName: "plus")
                 }
                 .padding()
