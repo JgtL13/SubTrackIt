@@ -10,6 +10,8 @@ import SwiftUI
 
 class SubscriptionsViewModel: ObservableObject {
     @Published var items = [SubscriptionModel]()
+    @Published var userID = "1"
+    
     let prefixUrl = "http://127.0.0.1:8080"
     
     init() {

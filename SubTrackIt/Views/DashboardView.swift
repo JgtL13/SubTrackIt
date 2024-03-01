@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @StateObject var viewModel = DashboardViewModel()
+    @ObservedObject var viewModel = DashboardViewModel()
         
     init() {
     }
@@ -59,6 +59,8 @@ struct DashboardView: View {
                 }
             }
             .navigationTitle("Upcoming Renewals") // Add a title to the NavigationView
+            .onAppear{viewModel.fetchSubscriptions(userID: viewModel.userID)}
+            .refreshable{viewModel.fetchSubscriptions(userID: viewModel.userID)}
         }
     }
 }

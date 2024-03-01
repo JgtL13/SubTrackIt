@@ -63,6 +63,8 @@ struct SubscriptionsView: View {
                     }
                 }
             }
+            .onAppear {viewModel.fetchSubscriptions(userID: viewModel.userID)}
+            .refreshable {viewModel.fetchSubscriptions(userID: viewModel.userID)}
             .navigationTitle("Your Subscriptions") // Add a title to the NavigationView
             .toolbar {
                 NavigationLink(destination: NewItemView()) {

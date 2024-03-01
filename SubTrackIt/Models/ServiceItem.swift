@@ -55,7 +55,7 @@ struct NewItemDataModel: Encodable, Decodable, Hashable {
 
 struct NewItemModel: Encodable, Decodable, Hashable {
     let Start_date: String
-    let Free_trial: Bool
+    let Free_trial: Int
     let User_ID: String
     let Plan_ID: Int
 }

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NewItemView: View {
-    @StateObject var viewModel = NewItemViewModel()
+    @ObservedObject var viewModel = NewItemViewModel()
+    @Environment(\.presentationMode) var presentationMode
     //@State private var selectedProvider: String?
     //@State private var selectedPlan: String?
     
@@ -47,13 +48,21 @@ struct NewItemView: View {
                 .datePickerStyle(CompactDatePickerStyle())
             
             // free trial (free trial price resumes after expiration)
-            Toggle("Free Trial", isOn: $viewModel.freeTrial)
+            Toggle("Free Trial", isOn: Binding(
+                get: {
+                    viewModel.freeTrial == 1
+                },
+                set: { newValue in
+                    viewModel.freeTrial = newValue ? 1 : 0
+                }
+            ))
         }
         .navigationTitle("New Subscription")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Save") {
                     viewModel.addNewSubscription()
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
             //.padding()

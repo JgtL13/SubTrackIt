@@ -10,7 +10,7 @@ import SwiftUI
 
 class NewItemViewModel: ObservableObject {
     @Published var title = ""
-    @Published var freeTrial = false
+    @Published var freeTrial = 0
     @Published var startDate = Date()
     @Published var selectedProvider: String?
     @Published var selectedPlan: Int?
