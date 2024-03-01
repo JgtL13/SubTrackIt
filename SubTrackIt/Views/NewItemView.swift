@@ -25,6 +25,7 @@ struct NewItemView: View {
             .pickerStyle(.navigationLink)
             .onChange(of: viewModel.selectedProvider) {
                 viewModel.fetchPlans(provider: viewModel.selectedProvider)
+                //print("Selected option:", $viewModel.selectedProvider)
             }
             
             Picker("Plan", selection: $viewModel.selectedPlan) {
@@ -35,6 +36,11 @@ struct NewItemView: View {
                 }
             }
             .pickerStyle(.navigationLink)
+            /*
+            .onChange(of: viewModel.selectedPlan) {
+                print("Selected option:", $viewModel.selectedPlan)
+            }
+            */
             
             // Subscription start date
             DatePicker("Start Date", selection: $viewModel.startDate, displayedComponents: .date)
@@ -47,7 +53,7 @@ struct NewItemView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Save") {
-                    //viewModel.addNewSubscription()
+                    viewModel.addNewSubscription()
                 }
             }
             //.padding()

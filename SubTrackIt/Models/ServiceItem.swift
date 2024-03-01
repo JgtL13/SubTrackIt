@@ -47,15 +47,15 @@ struct SubscriptionModel: Decodable, Hashable {
     let Remaining: Int
 }
 
-struct NewItemDataModel: Decodable, Hashable {
+struct NewItemDataModel: Encodable, Decodable, Hashable {
     let error: Bool
     let message: String?
     let data: [NewItemModel]
 }
 
-struct NewItemModel: Decodable, Hashable {
+struct NewItemModel: Encodable, Decodable, Hashable {
     let Start_date: String
-    let Free_trial: Int
+    let Free_trial: Bool
     let User_ID: String
     let Plan_ID: Int
 }

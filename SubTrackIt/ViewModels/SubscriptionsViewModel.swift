@@ -11,7 +11,6 @@ import SwiftUI
 class SubscriptionsViewModel: ObservableObject {
     @Published var items = [SubscriptionModel]()
     let prefixUrl = "http://127.0.0.1:8080"
-    //let getSubscriptionsUrl = "http://127.0.0.1:8080/subscriptions"
     
     init() {
         //guard let userID = UIDevice.current.identifierForVendor?.uuidString else {
