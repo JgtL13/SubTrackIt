@@ -10,29 +10,30 @@ import SwiftUI
 
 class DashboardViewModel: ObservableObject {
     @Published var items = [SubscriptionModel]()
-    let getSubscriptionsUrl = "http://127.0.0.1:8080/dashboard/"
+    let prefixUrl = "http://127.0.0.1:8080"
+    //let getSubscriptionsUrl = "http://127.0.0.1:8080/dashboard"
     
     init() {
-        guard let deviceID = UIDevice.current.identifierForVendor?.uuidString else {
-            print("Unable to retrieve device identifier")
-            return
-        }
-        fetchSubscriptions(deviceID: deviceID)
+        //guard let userID = UIDevice.current.identifierForVendor?.uuidString else {
+        //    print("Unable to retrieve device identifier")
+        //    return
+        //}
+        // remember to edit this part, for testing purposes
+        let userID = "1"
+        fetchSubscriptions(userID: userID)
     }
     
-    func fetchSubscriptions(deviceID: String) {
-        var urlString = getSubscriptionsUrl
-        
-        // remember to correct this part, for development purposes only
-        // urlString += "?deviceID=\(deviceID)"
-        urlString += "1"
-        
-        guard let url = URL(string: urlString) else {
+    func fetchSubscriptions(userID: String) {
+        guard let url = URL(string: "\(prefixUrl)/dashboard") else {
             print("Url not found")
             return
         }
         
-        URLSession.shared.dataTask(with: url) { (data, res, error) in
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue(userID, forHTTPHeaderField: "User-ID") // Set device ID as custom HTTP header
+        
+        URLSession.shared.dataTask(with: request) { (data, res, error) in
             if error != nil {
                 print("error", error?.localizedDescription ?? "")
                 return

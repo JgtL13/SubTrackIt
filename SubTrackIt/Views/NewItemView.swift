@@ -26,18 +26,15 @@ struct NewItemView: View {
             .onChange(of: viewModel.selectedProvider) {
                 viewModel.fetchPlans(provider: viewModel.selectedProvider)
             }
-
             
             Picker("Plan", selection: $viewModel.selectedPlan) {
-                Text("").tag(nil as String?)
-                ForEach(viewModel.planItems, id: \.self) { item in
-                    Text(item.Plan_name)
-                        .tag(item.Plan_name as String?)
+                Text("").tag(nil as Int?)
+                ForEach(viewModel.planItems, id: \.Plan_ID) { item in
+                    Text("\(item.Plan_name) - \(item.Duration_value) \(item.Duration_unit)")
+                        .tag(item.Plan_ID as Int?)
                 }
             }
             .pickerStyle(.navigationLink)
-            
-            // Subscription type (free trial price resumes after expiration)
             
             // Subscription start date
             DatePicker("Start Date", selection: $viewModel.startDate, displayedComponents: .date)
@@ -45,10 +42,16 @@ struct NewItemView: View {
             
             // free trial (free trial price resumes after expiration)
             Toggle("Free Trial", isOn: $viewModel.freeTrial)
-            
-            // Choose Subscription length
-            
-            // Button
+        }
+        .navigationTitle("New Subscription")
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button("Save") {
+                    //viewModel.addNewSubscription()
+                }
+            }
+            //.padding()
+            //.font(.system(size: 26))
         }
     }
 }

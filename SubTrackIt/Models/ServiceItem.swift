@@ -25,7 +25,10 @@ struct PlanDataModel: Decodable, Hashable {
 }
 
 struct PlanModel: Decodable, Hashable {
+    let Plan_ID: Int
     let Plan_name: String
+    let Duration_value: Int
+    let Duration_unit: String
 }
 
 struct SubscriptionDataModel: Decodable, Hashable {
@@ -42,4 +45,17 @@ struct SubscriptionModel: Decodable, Hashable {
     let Start_date: String
     let End_date: String
     let Remaining: Int
+}
+
+struct NewItemDataModel: Decodable, Hashable {
+    let error: Bool
+    let message: String?
+    let data: [NewItemModel]
+}
+
+struct NewItemModel: Decodable, Hashable {
+    let Start_date: String
+    let Free_trial: Int
+    let User_ID: String
+    let Plan_ID: Int
 }
