@@ -41,6 +41,7 @@ struct SubscriptionModel: Decodable, Hashable {
     let Provider: String
     let Plan_name: String
     let Subscription_type: String
+    let Subscription_ID: Int
     let Free_trial: Int
     let Start_date: String
     let End_date: String
