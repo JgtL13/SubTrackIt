@@ -9,15 +9,56 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var viewModel = ProfileViewModel()
+    @State var tempUsername: String = ""
+    @State var tempEmail: String = ""
+    @State var tempPassword: String = ""
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("My Account")) {
+            if (viewModel.username != "") {
+                Text("Welcome!\n \(viewModel.username)")
+                    .font(.system(size: 32, weight: .bold, design: .default))
+                    .multilineTextAlignment(.center) // Aligning text in the middle
+            } else {
+                // username not found -> create account and sync data
+                // login and sync data
+                // login page...
+
+                Form {
+                    TextField("Name", text: $tempUsername)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                        .autocapitalization(.none)
                     
+                    TextField("Email", text: $tempEmail)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                        .autocapitalization(.none)
+                    
+                    SecureField("Password", text: $tempPassword)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                        .autocapitalization(.none)
+                    
+                    Button(action: {
+                        viewModel.username = tempUsername
+                        viewModel.email = tempEmail
+                        viewModel.password = tempPassword
+                        viewModel.syncData(method: "GET")
+                        viewModel.syncData(method: "POST")
+                        viewModel.syncData(method: "PUT")
+                        
+                    }) {
+                        Text("Sync Data")
+                            .foregroundColor(.white)
+                            
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.black)
+                    )
                 }
+                .navigationBarTitle("Account")
             }
-            .navigationTitle("Account")
         }
     }
 }

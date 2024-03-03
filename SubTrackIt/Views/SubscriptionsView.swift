@@ -61,7 +61,9 @@ struct SubscriptionsView: View {
                             .contextMenu {
                                 Button(action: {
                                     viewModel.renewSubscription(subscriptionID: item.Subscription_ID)
-                                    viewModel.fetchSubscriptions(userID: viewModel.userID)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        viewModel.fetchSubscriptions(userID: userID)
+                                    }
                                 }) {
                                     Text("Renew")
                                     Image(systemName: "arrow.clockwise")
@@ -69,7 +71,9 @@ struct SubscriptionsView: View {
                                 Button(action: {
                                     // Handle delete action
                                     viewModel.deleteSubscription(subscriptionID: item.Subscription_ID)
-                                    viewModel.fetchSubscriptions(userID: viewModel.userID)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        viewModel.fetchSubscriptions(userID: userID)
+                                    }
                                 }) {
                                     Text("Unsubscribe")
                                     Image(systemName: "trash")
@@ -78,8 +82,8 @@ struct SubscriptionsView: View {
                     }
                 }
             }
-            .onAppear {viewModel.fetchSubscriptions(userID: viewModel.userID)}
-            .refreshable {viewModel.fetchSubscriptions(userID: viewModel.userID)}
+            .onAppear {viewModel.fetchSubscriptions(userID: userID)}
+            .refreshable {viewModel.fetchSubscriptions(userID: userID)}
             .navigationTitle("Your Subscriptions") // Add a title to the NavigationView
             .toolbar {
                 NavigationLink(destination: NewItemView()) {

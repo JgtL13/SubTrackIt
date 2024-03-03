@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DashboardView: View {
     @ObservedObject var viewModel = DashboardViewModel()
+    @ObservedObject var subscriptionsViewModel = SubscriptionsViewModel()
         
     init() {
     }
@@ -53,12 +54,33 @@ struct DashboardView: View {
                                     
                                 }
                             }
+                            .contextMenu {
+                                Button(action: {
+                                    subscriptionsViewModel.renewSubscription(subscriptionID: item.Subscription_ID)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        viewModel.fetchSubscriptions(userID: userID)
+                                    }
+                                }) {
+                                    Text("Renew")
+                                    Image(systemName: "arrow.clockwise")
+                                }
+                                Button(action: {
+                                    // Handle delete action
+                                    subscriptionsViewModel.deleteSubscription(subscriptionID: item.Subscription_ID)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        viewModel.fetchSubscriptions(userID: userID)
+                                    }
+                                }) {
+                                    Text("Unsubscribe")
+                                    Image(systemName: "trash")
+                                }
+                            }
                     }
                 }
             }
             .navigationTitle("Upcoming Renewals") // Add a title to the NavigationView
-            .onAppear{viewModel.fetchSubscriptions(userID: viewModel.userID)}
-            .refreshable{viewModel.fetchSubscriptions(userID: viewModel.userID)}
+            .onAppear{viewModel.fetchSubscriptions(userID: userID)}
+            .refreshable{viewModel.fetchSubscriptions(userID: userID)}
         }
     }
 }

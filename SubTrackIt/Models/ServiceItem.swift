@@ -18,6 +18,26 @@ struct ProviderModel: Decodable, Hashable {
     let Provider: String
 }
 
+struct UsernameDataModel: Decodable, Hashable {
+    let error: Bool
+    let message: String?
+    let data: [UsernameModel]
+}
+
+struct UsernameModel: Decodable, Hashable {
+    let User_name: String
+}
+
+struct SyncDataDataModel: Decodable, Hashable {
+    let error: Bool
+    let message: String?
+    let data: [SyncDataModel]
+}
+
+struct SyncDataModel: Decodable, Hashable {
+    let User_ID: String
+}
+
 struct PlanDataModel: Decodable, Hashable {
     let error: Bool
     let message: String?

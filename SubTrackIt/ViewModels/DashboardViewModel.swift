@@ -10,17 +10,8 @@ import SwiftUI
 
 class DashboardViewModel: ObservableObject {
     @Published var items = [SubscriptionModel]()
-    @Published var userID = "1"
-    
-    let prefixUrl = "http://127.0.0.1:8080"
     
     init() {
-        //guard let userID = UIDevice.current.identifierForVendor?.uuidString else {
-        //    print("Unable to retrieve device identifier")
-        //    return
-        //}
-        // remember to edit this part, for testing purposes
-        //let userID = "1"
         fetchSubscriptions(userID: userID)
     }
     

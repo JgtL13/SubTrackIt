@@ -9,21 +9,28 @@ import Foundation
 import SwiftUI
 
 class NewItemViewModel: ObservableObject {
-    @Published var title = ""
     @Published var freeTrial = 0
     @Published var startDate = Date()
     @Published var selectedProvider: String?
     @Published var selectedPlan: Int?
+    @Published var userID: String
     
     @Published var providerItems = [ProviderModel]()
     @Published var planItems = [PlanModel]()
     @Published var newItem = [NewItemModel]()
-    let prefixUrl = "http://127.0.0.1:8080"
+    //let prefixUrl = "http://127.0.0.1:8080"
     
     
     init() {
+        if let identifier = UIDevice.current.identifierForVendor?.uuidString {
+            self.userID = identifier
+        } else {
+            // If unable to retrieve the identifier, set a default value or handle the error
+            print("Unable to retrieve device identifier")
+            self.userID = "" // Set a default value or handle the error accordingly
+        }
         fetchProviders()
-        fetchPlans(provider: selectedProvider)
+        fetchPlans(provider: self.selectedProvider)
     }
     
     func fetchProviders() {
@@ -96,14 +103,14 @@ class NewItemViewModel: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd" // Adjust the date format as needed
         
         // Format the startDate as a string
-        let formattedStartDate = dateFormatter.string(from: startDate)
+        let formattedStartDate = dateFormatter.string(from: self.startDate)
         
         // Construct the dictionary with non-optional attributes
         let newItem = NewItemModel(
             Start_date: formattedStartDate,
-            Free_trial: freeTrial, // Assuming freeTrial is an Int
-            User_ID: "1", // Assuming User_ID is a String
-            Plan_ID: selectedPlan ?? 1 // Assuming selectedPlan is an optional Int
+            Free_trial: self.freeTrial, // Assuming freeTrial is an Int
+            User_ID: self.userID, // Assuming User_ID is a String
+            Plan_ID: self.selectedPlan ?? 1 // Assuming selectedPlan is an optional Int
         )
         
         do {
