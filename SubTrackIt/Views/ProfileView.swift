@@ -19,6 +19,18 @@ struct ProfileView: View {
                 Text("Welcome!\n \(viewModel.username)")
                     .font(.system(size: 32, weight: .bold, design: .default))
                     .multilineTextAlignment(.center) // Aligning text in the middle
+                    .toolbar {
+                        Button(action: {
+                            userID = ""
+                            viewModel.username = ""
+                            viewModel.email = ""
+                            viewModel.password = ""
+                        }) {
+                            Text("Logout")
+                                .padding()
+                                .font(.system(size: 26))
+                        }
+                    }
             } else {
                 // username not found -> create account and sync data
                 // login and sync data

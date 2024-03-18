@@ -12,16 +12,25 @@ let prefixUrl = "http://127.0.0.1:8080"
 //var userID = "1"
 //var userID = "4B797EC4-8720-4F21-A685-3F62D4B30099"
 
-var userID: String = {
-    if let identifier = UIDevice.current.identifierForVendor?.uuidString {
-        createUser(userID: identifier)
-        return identifier
-    } else {
-        // If unable to retrieve the identifier, set a default value or handle the error
-        print("Unable to retrieve device identifier, creating a new one")
-        return "" // Set a default value or handle the error accordingly
+var userID: String {
+    get {
+        if let savedUserID = UserDefaults.standard.string(forKey: "userID") {
+            return savedUserID
+        } else {
+            if let identifier = UIDevice.current.identifierForVendor?.uuidString {
+                createUser(userID: identifier)
+                return identifier
+            } else {
+                // If unable to retrieve the identifier, set a default value or handle the error
+                print("Unable to retrieve device identifier, creating a new one")
+                return "" // Set a default value or handle the error accordingly
+            }
+        }
     }
-}()
+    set {
+        UserDefaults.standard.set(newValue, forKey: "userID")
+    }
+}
 
 func createUser(userID: String) {
     guard let url = URL(string: "\(prefixUrl)/createUser") else {
