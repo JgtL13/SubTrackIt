@@ -30,7 +30,7 @@ struct DashboardView: View {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(item.Provider)
-                                            //.frame(maxWidth: .infinity, alignment: .leading)
+                                            .lineLimit(1) // Prevent text from wrapping to the next line
                                             .font(.title)
                                             .bold()
                                         Text("Expires: \(item.End_date)")
@@ -49,8 +49,8 @@ struct DashboardView: View {
                                             .font(.caption) // Adjust the font size and style as needed
                                             .foregroundColor(.gray)
                                     }
-                                    .frame(maxWidth: 120, alignment: .center)
-                                    .padding(.trailing, 10)
+                                    .frame(maxWidth: 60, alignment: .center)
+                                    .padding(.trailing, 40)
                                     
                                 }
                             }

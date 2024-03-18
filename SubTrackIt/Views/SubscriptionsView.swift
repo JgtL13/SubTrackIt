@@ -30,6 +30,7 @@ struct SubscriptionsView: View {
                                     VStack(alignment: .leading) {
                                         Text(item.Provider)
                                             .font(.title)
+                                            .lineLimit(1) // Prevent text from wrapping to the next line
                                             .bold()
                                         Text(item.Plan_name)
                                             .font(.headline)
@@ -53,8 +54,8 @@ struct SubscriptionsView: View {
                                             .font(.caption) // Adjust the font size and style as needed
                                             .foregroundColor(.gray)
                                     }
-                                    .frame(maxWidth: 120, alignment: .center)
-                                    .padding(.trailing, 10)
+                                    .frame(maxWidth: 60, alignment: .center)
+                                    .padding(.trailing, 40)
                                     
                                 }
                             }
