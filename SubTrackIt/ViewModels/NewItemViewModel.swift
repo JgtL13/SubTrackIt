@@ -13,7 +13,6 @@ class NewItemViewModel: ObservableObject {
     @Published var startDate = Date()
     @Published var selectedProvider: String?
     @Published var selectedPlan: Int?
-    @Published var userID: String
     
     @Published var providerItems = [ProviderModel]()
     @Published var planItems = [PlanModel]()
@@ -22,13 +21,6 @@ class NewItemViewModel: ObservableObject {
     
     
     init() {
-        if let identifier = UIDevice.current.identifierForVendor?.uuidString {
-            self.userID = identifier
-        } else {
-            // If unable to retrieve the identifier, set a default value or handle the error
-            print("Unable to retrieve device identifier")
-            self.userID = "" // Set a default value or handle the error accordingly
-        }
         fetchProviders()
         fetchPlans(provider: self.selectedProvider)
     }
@@ -109,7 +101,7 @@ class NewItemViewModel: ObservableObject {
         let newItem = NewItemModel(
             Start_date: formattedStartDate,
             Free_trial: self.freeTrial, // Assuming freeTrial is an Int
-            User_ID: self.userID, // Assuming User_ID is a String
+            User_ID: userID, // Assuming User_ID is a String
             Plan_ID: self.selectedPlan ?? 1 // Assuming selectedPlan is an optional Int
         )
         

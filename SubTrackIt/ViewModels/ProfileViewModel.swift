@@ -101,7 +101,7 @@ class ProfileViewModel: ObservableObject {
                         let result = try JSONDecoder().decode(SyncDataDataModel.self, from: data)
                         DispatchQueue.main.async {
                             if let user_ID = result.data.first?.User_ID {
-                                userID = user_ID
+                                updateUserID(newUserID: user_ID)
                             } else {
                                 print("No username found in the response")
                             }

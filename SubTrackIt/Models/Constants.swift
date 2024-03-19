@@ -19,6 +19,7 @@ var userID: String {
         } else {
             if let identifier = UIDevice.current.identifierForVendor?.uuidString {
                 createUser(userID: identifier)
+                print("here2")
                 return identifier
             } else {
                 // If unable to retrieve the identifier, set a default value or handle the error
@@ -61,6 +62,11 @@ func createUser(userID: String) {
             // Handle the failure scenario accordingly
         }
     }.resume()
+}
+
+func updateUserID(newUserID: String) {
+    userID = newUserID
+    UserDefaults.standard.set(newUserID, forKey: "userID")
 }
 
 

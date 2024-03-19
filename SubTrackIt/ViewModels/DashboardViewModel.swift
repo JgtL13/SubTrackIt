@@ -20,7 +20,6 @@ class DashboardViewModel: ObservableObject {
             print("Url not found")
             return
         }
-        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue(userID, forHTTPHeaderField: "User-ID") // Set device ID as custom HTTP header
