@@ -10,16 +10,16 @@ import SwiftUI
 import CryptoKit
 
 class ProfileViewModel: ObservableObject {
-    @Published var username: String
-    @Published var email: String
+    //@Published var username: String
+    //@Published var email: String
     @Published var password: String
     @Published var items = [UsernameModel]()
     //@Published var email: String
     //@Published var password: String
     
     init() {
-        self.username = ""
-        self.email = ""
+        //self.username = ""
+        //self.email = ""
         self.password = ""
         getUsername()
     }
@@ -62,7 +62,9 @@ class ProfileViewModel: ObservableObject {
                     let result = try JSONDecoder().decode(UsernameDataModel.self, from: data)
                     DispatchQueue.main.async {
                         if let userName = result.data.first?.User_name {
-                            self.username = userName
+                            username = userName
+                            print(username)
+                            //updateUsername(newUsername: userName)
                         } else {
                             print("No username found in the response")
                         }
@@ -86,7 +88,7 @@ class ProfileViewModel: ObservableObject {
         
         if(method == "GET") {
             request.httpMethod = method
-            request.addValue(self.email, forHTTPHeaderField: "email") // Set device ID as custom HTTP header
+            request.addValue(email, forHTTPHeaderField: "email") // Set device ID as custom HTTP header
             request.addValue(hashPassword(self.password), forHTTPHeaderField: "password") // Set device ID as custom HTTP header
             //request.addValue(self.password, forHTTPHeaderField: "password") // Set device ID as custom HTTP header
             
@@ -118,7 +120,7 @@ class ProfileViewModel: ObservableObject {
         }
         else if(method == "POST") {
             request.httpMethod = method
-            request.addValue(self.email, forHTTPHeaderField: "email") // Set device ID as custom HTTP header
+            request.addValue(email, forHTTPHeaderField: "email") // Set device ID as custom HTTP header
             request.addValue(hashPassword(self.password), forHTTPHeaderField: "password") // Set device ID as custom HTTP header
             request.addValue(userID, forHTTPHeaderField: "User-ID") // Set device ID as custom HTTP header
             
@@ -144,7 +146,7 @@ class ProfileViewModel: ObservableObject {
         }
         else if(method == "PUT") {
             request.httpMethod = method
-            request.addValue(self.username, forHTTPHeaderField: "username") // Set device ID as custom HTTP header
+            request.addValue(username, forHTTPHeaderField: "username") // Set device ID as custom HTTP header
             request.addValue(userID, forHTTPHeaderField: "User-ID") // Set device ID as custom HTTP header
             
             URLSession.shared.dataTask(with: request) { (data, res, error) in

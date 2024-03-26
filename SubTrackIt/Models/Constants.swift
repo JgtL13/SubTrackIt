@@ -32,6 +32,24 @@ var userID: String {
     }
 }
 
+var email: String {
+    get {
+        return UserDefaults.standard.string(forKey: "email") ?? ""
+    }
+    set {
+        UserDefaults.standard.set(newValue, forKey: "email")
+    }
+}
+
+var username: String {
+    get {
+        return UserDefaults.standard.string(forKey: "username") ?? ""
+    }
+    set {
+        UserDefaults.standard.set(newValue, forKey: "username")
+    }
+}
+
 func resetUserID() {
     if let identifier = UIDevice.current.identifierForVendor?.uuidString {
         UserDefaults.standard.set(identifier, forKey: "userID")
@@ -39,6 +57,16 @@ func resetUserID() {
         // Handle the case where the device identifier cannot be retrieved
         print("Unable to retrieve device identifier")
     }
+}
+
+func resetEmail() {
+    email = ""
+    UserDefaults.standard.set("", forKey: "email")
+}
+
+func resetUsername() {
+    username = ""
+    UserDefaults.standard.set("", forKey: "username")
 }
 
 func createUser(userID: String) {
@@ -77,3 +105,12 @@ func updateUserID(newUserID: String) {
     UserDefaults.standard.set(newUserID, forKey: "userID")
 }
 
+func updateEmail(newEmail: String) {
+    email = newEmail
+    UserDefaults.standard.set(newEmail, forKey: "email")
+}
+
+func updateUsername(newUsername: String) {
+    username = newUsername
+    UserDefaults.standard.set(newUsername, forKey: "username")
+}

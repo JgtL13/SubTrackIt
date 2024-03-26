@@ -15,16 +15,18 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationView {
-            if (viewModel.email != "") {
-                Text("Welcome!\n \(viewModel.username != "" ? viewModel.username : viewModel.email)")
+            if (email != "") {
+                Text("Welcome!\n \(username != "" ? username : email)")
                     .font(.system(size: 32, weight: .bold, design: .default))
                     .multilineTextAlignment(.center) // Aligning text in the middle
                     .toolbar {
                         Button(action: {
                             resetUserID()
                             print(userID)
-                            viewModel.username = ""
-                            viewModel.email = ""
+                            //viewModel.username = ""
+                            resetUsername()
+                            //viewModel.email = ""
+                            resetEmail()
                             viewModel.password = ""
                         }) {
                             Text("Logout")
@@ -54,14 +56,20 @@ struct ProfileView: View {
                         // using email and password
                         // try to get username using UserID.
                         // If username doesnt exist, use email instead.
-                        viewModel.email = tempEmail
+                        //viewModel.email = tempEmail
+                        email = tempEmail
                         viewModel.password = tempPassword
                         viewModel.syncData(method: "GET")
-                        viewModel.syncData(method: "POST")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            viewModel.syncData(method: "POST")
+                        }
+                        //viewModel.syncData(method: "POST")
                         if (tempUsername != "") {
-                            viewModel.username = tempUsername
+                            //viewModel.username = tempUsername
+                            username = tempUsername
                             viewModel.syncData(method: "PUT")
                         }
+                        viewModel.getUsername()
                         
                         
                     }) {
