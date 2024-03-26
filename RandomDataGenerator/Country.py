@@ -15,14 +15,12 @@ fake = Faker()
 Faker.seed(0)
 
 # Generate and insert fake data into database
-for i in range(11, 100, 1):  # Generate 1000 records
-    Email = fake.email()
-    Password = fake.password()
-    User_ID = i
+for _ in range(100):  # Generate 1000 records
+    countryName = fake.country()
 
     # Insert data into database
-    query = "INSERT INTO Account (Email, Password, User_ID) VALUES (%s, %s, %s)"
-    values = (Email, Password, User_ID)
+    query = "INSERT INTO Country (Country_name) VALUES (%s)"
+    values = (countryName, )
     cursor.execute(query, values)
 
 # Commit changes and close connection

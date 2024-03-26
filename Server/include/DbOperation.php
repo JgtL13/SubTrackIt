@@ -178,10 +178,9 @@ class DbOperation
     
     public function getUsername($userID) {
         $stmt = $this->conn->prepare("
-            SELECT u.User_name
-            FROM User u
-            JOIN Account a ON u.User_ID = a.User_ID
-            WHERE a.User_ID = ?;
+            SELECT User_name
+            FROM User
+            WHERE User_ID = ?;
         ");
         $stmt->bind_param("s", $userID);
         $stmt -> execute();

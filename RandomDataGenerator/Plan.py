@@ -22,11 +22,10 @@ for _ in range(1000):  # Generate 1000 records
     Monthly_fee = fake.pyfloat(right_digits=2, positive=True, max_value=200)
     Duration_value = 1
     Duration_unit = 'month'
-    Country = 'United States'
 
     # Insert data into database
-    query = "INSERT INTO Plan (Provider, Plan_name, Subscription_type, Monthly_fee, Duration_value, Duration_unit, Country) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    values = (Provider, Plan_name, Subscription_type, Monthly_fee, Duration_value, Duration_unit, Country)
+    query = "INSERT INTO Plan (Provider, Plan_name, Subscription_type, Monthly_fee, Duration_value, Duration_unit) VALUES (%s, %s, %s, %s, %s, %s)"
+    values = (Provider, Plan_name, Subscription_type, Monthly_fee, Duration_value, Duration_unit)
     cursor.execute(query, values)
 
 # Commit changes and close connection

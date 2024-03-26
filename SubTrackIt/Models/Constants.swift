@@ -19,7 +19,6 @@ var userID: String {
         } else {
             if let identifier = UIDevice.current.identifierForVendor?.uuidString {
                 createUser(userID: identifier)
-                print("here2")
                 return identifier
             } else {
                 // If unable to retrieve the identifier, set a default value or handle the error
@@ -30,6 +29,15 @@ var userID: String {
     }
     set {
         UserDefaults.standard.set(newValue, forKey: "userID")
+    }
+}
+
+func resetUserID() {
+    if let identifier = UIDevice.current.identifierForVendor?.uuidString {
+        UserDefaults.standard.set(identifier, forKey: "userID")
+    } else {
+        // Handle the case where the device identifier cannot be retrieved
+        print("Unable to retrieve device identifier")
     }
 }
 
@@ -68,5 +76,4 @@ func updateUserID(newUserID: String) {
     userID = newUserID
     UserDefaults.standard.set(newUserID, forKey: "userID")
 }
-
 

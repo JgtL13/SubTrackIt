@@ -68,7 +68,7 @@ class SubscriptionsViewModel: ObservableObject {
                 return
             }
 
-            if httpResponse.statusCode == 204 {
+            if (httpResponse.statusCode == 204 || httpResponse.statusCode == 200) {
                 print("Subscription deleted successfully")
                 // Perform any additional actions after successful deletion
             } else {

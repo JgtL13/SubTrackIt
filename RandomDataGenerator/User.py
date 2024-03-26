@@ -18,11 +18,10 @@ Faker.seed(0)
 for i in range(11, 1001, 1):  # Generate 1000 records
     User_ID = i
     User_name = fake.first_name()
-    Country = fake.country()
 
     # Insert data into database
-    query = "INSERT INTO User (User_ID, User_name, Country) VALUES (%s, %s, %s)"
-    values = (User_ID, User_name, Country)
+    query = "INSERT INTO User (User_ID, User_name) VALUES (%s, %s)"
+    values = (User_ID, User_name)
     cursor.execute(query, values)
 
 # Commit changes and close connection

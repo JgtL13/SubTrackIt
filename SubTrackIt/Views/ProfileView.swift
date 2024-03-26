@@ -15,13 +15,14 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationView {
-            if (viewModel.username != "") {
-                Text("Welcome!\n \(viewModel.username)")
+            if (viewModel.email != "") {
+                Text("Welcome!\n \(viewModel.username != "" ? viewModel.username : viewModel.email)")
                     .font(.system(size: 32, weight: .bold, design: .default))
                     .multilineTextAlignment(.center) // Aligning text in the middle
                     .toolbar {
                         Button(action: {
-                            userID = ""
+                            resetUserID()
+                            print(userID)
                             viewModel.username = ""
                             viewModel.email = ""
                             viewModel.password = ""
@@ -37,7 +38,7 @@ struct ProfileView: View {
                 // login page...
 
                 Form {
-                    TextField("Name", text: $tempUsername)
+                    TextField("Name (optional)", text: $tempUsername)
                         .textFieldStyle(DefaultTextFieldStyle())
                         .autocapitalization(.none)
                     
@@ -50,12 +51,18 @@ struct ProfileView: View {
                         .autocapitalization(.none)
                     
                     Button(action: {
-                        viewModel.username = tempUsername
+                        // using email and password
+                        // try to get username using UserID.
+                        // If username doesnt exist, use email instead.
                         viewModel.email = tempEmail
                         viewModel.password = tempPassword
                         viewModel.syncData(method: "GET")
                         viewModel.syncData(method: "POST")
-                        viewModel.syncData(method: "PUT")
+                        if (tempUsername != "") {
+                            viewModel.username = tempUsername
+                            viewModel.syncData(method: "PUT")
+                        }
+                        
                         
                     }) {
                         Text("Sync Data")

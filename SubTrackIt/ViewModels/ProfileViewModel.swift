@@ -18,9 +18,9 @@ class ProfileViewModel: ObservableObject {
     //@Published var password: String
     
     init() {
-        username = ""
-        email = ""
-        password = ""
+        self.username = ""
+        self.email = ""
+        self.password = ""
         getUsername()
     }
     
@@ -61,8 +61,8 @@ class ProfileViewModel: ObservableObject {
                 if let data = data {
                     let result = try JSONDecoder().decode(UsernameDataModel.self, from: data)
                     DispatchQueue.main.async {
-                        if let username = result.data.first?.User_name {
-                            self.username = username
+                        if let userName = result.data.first?.User_name {
+                            self.username = userName
                         } else {
                             print("No username found in the response")
                         }
@@ -102,8 +102,10 @@ class ProfileViewModel: ObservableObject {
                         DispatchQueue.main.async {
                             if let user_ID = result.data.first?.User_ID {
                                 updateUserID(newUserID: user_ID)
+                                print("new: ", userID)
+                                self.getUsername()
                             } else {
-                                print("No username found in the response")
+                                print("No user ID found in the response")
                             }
                         }
                     } else {
@@ -132,10 +134,10 @@ class ProfileViewModel: ObservableObject {
                 }
 
                 if httpResponse.statusCode == 200 {
-                    print("Subscription deleted successfully")
+                    print("Account added successfully")
                     // Perform any additional actions after successful deletion
                 } else {
-                    print("Failed to delete subscription. Status code:", httpResponse.statusCode)
+                    print("Failed to add account. Status code:", httpResponse.statusCode)
                     // Handle the failure scenario accordingly
                 }
             }.resume()
@@ -149,7 +151,10 @@ class ProfileViewModel: ObservableObject {
                 if error != nil {
                     print("error", error?.localizedDescription ?? "")
                     return
+                } else {
+                    self.getUsername()
                 }
+                
                 
                 guard let httpResponse = res as? HTTPURLResponse else {
                     print("Invalid response")
@@ -157,10 +162,11 @@ class ProfileViewModel: ObservableObject {
                 }
 
                 if httpResponse.statusCode == 200 {
-                    print("Subscription deleted successfully")
+                    print(userID)
+                    print("Username updated successfully")
                     // Perform any additional actions after successful deletion
                 } else {
-                    print("Failed to delete subscription. Status code:", httpResponse.statusCode)
+                    print("Failed to update username. Status code:", httpResponse.statusCode)
                     // Handle the failure scenario accordingly
                 }
             }.resume()
